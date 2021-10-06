@@ -1,0 +1,88 @@
+QUESTION
+
+Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
+
+k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes, in the end, should remain as it is.
+
+You may not alter the values in the list's nodes, only nodes themselves may be changed.
+
+ CODE:
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) 
+    {
+        ListNode* temp1=head;
+        ListNode* temp2;
+        ListNode* temp3;
+        ListNode* temp4;
+        int r=0;
+        
+        int count=0;
+        while(temp1)
+        {
+            temp4=temp1;
+            count=0;
+            while(count!=k)
+            {
+                if(temp4==NULL)
+                {
+                    temp2->next=temp1;
+                    return head;
+                }
+                count++;
+                temp4=temp4->next;   
+            }
+            
+            if(r==0)
+            {
+                count=0;
+                temp2=temp1;
+                ListNode* prev=NULL;
+                ListNode* curr;
+               while(count<k)
+               {
+                   curr=temp1->next;
+                   temp1->next=prev;
+                   prev=temp1;
+                   temp1=curr;
+                   count++; 
+               }
+                head=prev;
+                r++;
+            }
+            else
+            {
+                count=0;
+                temp3=temp1;
+                ListNode* prev=NULL;
+                ListNode* curr;
+                while(count<k)
+                {
+                    curr=temp1->next;
+                   temp1->next=prev;
+                   prev=temp1;
+                   temp1=curr;
+                   count++;   
+                }
+                temp2->next=prev;
+                temp2=temp3;
+                
+            }
+            
+        }
+        return head;
+        
+        
+    }
+};
