@@ -7,6 +7,11 @@ double multiply(double number, int n) {
     }
     return ans; 
 }
+
+double getNthRoot(int n, int m) {
+    double low = 1;
+    double high = m;
+    double eps = 1e-6; 
     
     while((high - low) > eps) {
         double mid = (low + high) / 2.0; 
