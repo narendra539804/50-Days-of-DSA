@@ -1,0 +1,28 @@
+34. Find First and Last Position of Element in Sorted Array
+-----------------------------------------------------------------------------------------
+Given an array of integers nums sorted in ascending order, find the starting and ending position of a given target value.
+
+If target is not found in the array, return [-1, -1].
+
+You must write an algorithm with O(log n) runtime complexity.
+-----------------------------------------------------------------------------------------
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+    
+        bool pre=binary_search(nums.begin(),nums.end(),target);
+        vector<int>res;
+        if(pre==false)
+        {
+            res.push_back(-1);
+            res.push_back(-1);
+            return res;
+        }
+        auto it=lower_bound(nums.begin(),nums.end(),target)-nums.begin();
+        auto it1=upper_bound(nums.begin(),nums.end(),target)-nums.begin();
+        res.push_back(it);
+        res.push_back(it1-1);
+        
+      return res;
+    }
+};
