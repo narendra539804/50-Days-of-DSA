@@ -1,0 +1,42 @@
+You are given a 2D integer grid of size m x n and an integer x. In one operation, you can add x to or subtract x from any element in the grid.
+
+A uni-value grid is a grid where all the elements of it are equal.
+
+Return the minimum number of operations to make the grid uni-value. If it is not possible, return -1
+----------------------------------------------------------------------------------------
+class Solution {
+public:
+    int minOperations(vector<vector<int>>& grid, int k) 
+    {
+        
+        int n=grid.size();
+        int m=grid[0].size();
+        vector<int> arr(n * m, 0);
+        int mod = grid[0][0] % k;
+ 
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            arr[i * m + j] = grid[i][j];
+            if (grid[i][j] % k != mod) {
+                return -1;
+            }
+        }
+    }
+    sort(arr.begin(), arr.end());
+ 
+    int median = arr[(n * m) / 2];
+    int minOperations = 0;
+    for (int i = 0; i < n * m; ++i)
+        minOperations += abs(arr[i] - median) / k;
+    if ((n * m) % 2 == 0)
+    {
+       int median2 = arr[( (n * m) / 2) - 1];
+       int minOperations2 = 0;
+       for (int i = 0; i < n * m; ++i)
+          minOperations2 += abs(arr[i] - median2) / k;
+ 
+       minOperations = min(minOperations, minOperations2);
+    }
+    return minOperations;
+}
+};
