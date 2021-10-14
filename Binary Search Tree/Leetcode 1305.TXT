@@ -1,0 +1,27 @@
+1305. All Elements in Two Binary Search --------------------------------------------------------------------------------------
+Given two binary search trees root1 and root2.
+
+Return a list containing all the integers from both trees sorted in ascending order.
+--------------------------------------------------------------------------------------
+
+class Solution {
+public:
+    vector<int>res;
+    void inorder(TreeNode *root)
+    {
+        if(root!=NULL)
+        {
+            inorder(root->left);
+            res.push_back(root->val);
+            inorder(root->right);
+        }
+    }
+    vector<int> getAllElements(TreeNode* root1, TreeNode* root2) 
+    {
+        inorder(root1);
+        inorder(root2);
+        sort(res.begin(),res.end());
+        return res;
+        
+    }
+};
