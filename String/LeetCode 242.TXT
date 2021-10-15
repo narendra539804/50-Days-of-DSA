@@ -1,0 +1,42 @@
+242. Valid Anagram
+--------------------------------------------------------------------------------------
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+--------------------------------------------------------------------------------------
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        
+        unordered_map<char,int> mp1;
+        unordered_map<char,int>mp2;
+        for(int i=0;i<s.size();i++)
+        {
+            mp1[s[i]]++;
+        }
+        for(int i=0;i<t.size();i++)
+        {
+            mp2[t[i]]++;
+        }
+        for(auto x:mp2)
+        {
+            char p=x.first;
+            int y=x.second;
+            int z=mp1[p];
+            if(y!=z)
+            {
+                return false;
+            }
+        }
+        for(auto x:mp1)
+        {
+            char p=x.first;
+            int y=x.second;
+            int z=mp2[p];
+            if(y!=z)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+};
