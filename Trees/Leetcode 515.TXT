@@ -1,0 +1,47 @@
+515. Find Largest Value in Each Tree Row
+---------------------------------------------------------------------------------------
+Given the root of a binary tree, return an array of the largest value in each row of the tree (0-indexed).
+----------------------------------------------------------------------------------------
+
+class Solution {
+public:
+    vector<int> largestValues(TreeNode* root) 
+    {
+        vector<int>res;
+        queue<TreeNode*>q;
+        if(root==NULL)
+        {
+            return res;
+        }
+        q.push(root);
+        while(!q.empty())
+        {
+            int x=q.size();
+            int r=INT_MIN;
+            for(int i=0;i<x;i++)
+            {
+                TreeNode *t=q.front();
+                int s=t->val;
+                if(s>r)
+                {
+                    r=s;
+                }
+                q.pop();
+                if(t->left!=NULL)
+                {
+                    q.push(t->left);
+                }
+                if(t->right!=NULL)
+                {
+                    q.push(t->right);
+                }
+            }
+            res.push_back(r);
+            r=INT_MIN;
+        }
+        return res;
+        
+    }
+};
+
+ 
