@@ -1,0 +1,28 @@
+1108. Defanging an IP Address
+----------------------------------------------------------------------------------------
+Given a valid (IPv4) IP address, return a defanged version of that IP address.
+
+A defanged IP address replaces every period "." with "[.]".
+
+----------------------------------------------------------------------------------------
+ 
+class Solution {
+public:
+    string defangIPaddr(string address)
+    {
+        string add="";
+        for(int i=0;i<address.size();i++)
+        {
+            if(address[i]=='.')
+            {
+               add+='[';
+                 add+=address[i];
+                add+=']';
+                continue;
+            
+            }
+            add+=address[i];
+        }
+        return add;
+    }
+};
