@@ -1,0 +1,51 @@
+113. Path Sum II
+--------------------------------------------------------------------------------------
+Given the root of a binary tree and an integer targetSum, return all root-to-leaf paths where the sum of the node values in the path equals targetSum. Each path should be returned as a list of the node values, not node references.
+
+A root-to-leaf path is a path starting from the root and ending at any leaf node. A leaf is a node with no children.
+--------------------------------------------------------------------------------------
+
+class Solution {
+public:
+    vector<vector<int>> pathSum(TreeNode* root, int targetSum)
+    {
+        vector<vector<int>> res;
+        string ans="";
+        int nums=0;
+        preorder(res,ans,nums,root,targetSum);
+        return res;
+    }
+    void preorder(vector<vector<int>>&res,string ans,int nums,TreeNode *root,int targetSum)
+    {
+        if(root==NULL)
+        {
+            return;
+        }
+        ans=ans+to_string(root->val)+",";
+        nums=nums+root->val;
+        if(root->left==NULL and root->right==NULL)
+        {
+            if(nums==targetSum)
+            {
+                vector<int> p;
+                string r=ans;
+                string temp="";
+                for(int i=0;i<r.size();i++)
+                {
+                    if(r[i]==',')
+                    {
+                      int n=stoi(temp);
+                      temp="";
+                      p.push_back(n);
+                      continue;
+                    }
+                    temp+=r[i];
+                }
+                res.push_back(p);
+            }
+        }
+         preorder(res,ans,nums,root->left,targetSum);
+         preorder(res,ans,nums,root->right,targetSum);
+    }
+};
+
