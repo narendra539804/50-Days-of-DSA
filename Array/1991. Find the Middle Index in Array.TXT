@@ -1,0 +1,41 @@
+1991. Find the Middle Index in Array
+----------------------------------------------------------------------------------------
+Given a 0-indexed integer array nums, find the leftmost middleIndex (i.e., the smallest amongst all the possible ones).
+
+A middleIndex is an index where nums[0] + nums[1] + ... + nums[middleIndex-1] == nums[middleIndex+1] + nums[middleIndex+2] + ... + nums[nums.length-1].
+
+If middleIndex == 0, the left side sum is considered to be 0. Similarly, if middleIndex == nums.length - 1, the right side sum is considered to be 0.
+
+Return the leftmost middleIndex that satisfies the condition, or -1 if there is no such index
+----------------------------------------------------------------------------------------
+
+class Solution {
+public:
+    int findMiddleIndex(vector<int>& nums) 
+    {
+        vector<int>pref;
+        int x=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            x=x+nums[i];
+            pref.push_back(x);
+        }
+        vector<int>suf;
+        x=0;
+        for(int i=nums.size()-1;i>=0;i--)
+        {
+            x=x+nums[i];
+            suf.push_back(x);
+        }
+        reverse(suf.begin(),suf.end());
+        for(int i=0;i<pref.size();i++)
+        {
+            cout<<pref[i]<<"   "<<suf[i]<<i<<endl;
+            if(pref[i]==suf[i])
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+};
