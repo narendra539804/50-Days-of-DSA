@@ -1,0 +1,50 @@
+1161. Maximum Level Sum of a Binary Tree
+----------------------------------------------------------------------------------------
+Given the root of a binary tree, the level of its root is 1, the level of its children is 2, and so on.
+
+Return the smallest level x such that the sum of all the values of nodes at level x is maximal.
+----------------------------------------------------------------------------------------
+
+class Solution {
+public:
+    int maxLevelSum(TreeNode* root)
+    {
+        int res=0,sum=INT_MIN;
+        queue<TreeNode*>q;
+        if(root==NULL)
+        {
+            return res;
+        }
+        q.push(root);
+        int level=0;
+        while(!q.empty())
+        {
+            int x=q.size();
+            int ans=0;
+            level++;
+            for(int i=0;i<x;i++)
+            {
+                TreeNode *t=q.front();
+                int s=t->val;
+                ans+=s;
+                q.pop();
+                if(t->left!=NULL)
+                {
+                    q.push(t->left);
+                }
+                if(t->right!=NULL)
+                {
+                    q.push(t->right);
+                }
+            }
+            if(ans>sum)
+                { 
+                   // cout<<ans<<endl;
+                    sum=ans;
+                    res=level;
+                }
+            
+        }
+        return res;
+    }
+};

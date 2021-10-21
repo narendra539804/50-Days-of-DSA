@@ -1,0 +1,39 @@
+1302. Deepest Leaves Sum
+----------------------------------------------------------------------------------------
+Given the root of a binary tree, return the sum of values of its deepest leaves.
+----------------------------------------------------------------------------------------
+
+class Solution {
+public:
+    int deepestLeavesSum(TreeNode* root) 
+    {
+        queue<TreeNode*>q;
+        int res=0;
+        if(root==NULL)
+        {
+            return res;
+        }
+        q.push(root);
+        while(!q.empty())
+        {
+            int x=q.size();
+            res=0;
+            for(int i=0;i<x;i++)
+            {
+                TreeNode *t=q.front();
+                res=res+t->val;
+                q.pop();
+                if(t->left!=NULL)
+                {
+                    q.push(t->left);
+                }
+                if(t->right!=NULL)
+                {
+                    q.push(t->right);
+                }
+            }
+        }
+        return res;
+        
+    }
+};
