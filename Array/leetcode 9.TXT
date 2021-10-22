@@ -1,0 +1,34 @@
+9. Palindrome Number
+--------------------------------------------------------------------------------------
+Given an integer x, return true if x is palindrome integer.
+
+An integer is a palindrome when it reads the same backward as forward. For example, 121 is palindrome while 123 is not.
+
+--------------------------------------------------------------------------------------
+
+class Solution {
+public:
+    bool isPalindrome(int x)
+    {
+       double res=0;
+       double n=x,r;
+    if(x<0)
+    {
+        return false;
+    }
+        
+    else {
+        while(x>0)
+        {
+            r=x%10;
+            res=res*10+r;
+            x=x/10;
+        }
+        if(res==n)
+        {
+            return true;
+        }
+    }
+    return false;
+    }
+};
