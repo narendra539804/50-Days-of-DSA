@@ -1,0 +1,34 @@
+1588. Sum of All Odd Length Subarrays
+----------------------------------------------------------------------------------------
+Given an array of positive integers arr, calculate the sum of all possible odd-length subarrays.
+
+A subarray is a contiguous subsequence of the array.
+
+Return the sum of all odd-length subarrays of arr.
+
+----------------------------------------------------------------------------------------
+
+class Solution {
+public:
+    int sumOddLengthSubarrays(vector<int>& arr) 
+    {
+       
+        int sum=0;
+        for(int i=0;i<arr.size();i++)
+        { 
+            int count=1;
+            int sub=0;
+            for(int j=i;j<arr.size();j++)
+            {
+                sub=sub+arr[j];
+                if(count%2!=0)
+                {
+                 sum+=sub;
+                }
+                count++;
+            }
+        }
+        return sum;
+        
+    }
+};
