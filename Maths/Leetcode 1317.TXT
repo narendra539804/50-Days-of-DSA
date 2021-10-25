@@ -1,0 +1,62 @@
+1317. Convert Integer to the Sum of Two No-Zero Integers
+--------------------------------------------------------------------------------------
+Given an integer n. No-Zero integer is a positive integer which doesn't contain any 0 in its decimal representation.
+
+Return a list of two integers [A, B] where:
+
+A and B are No-Zero integers.
+A + B = n
+It's guarateed that there is at least one valid solution. If there are many valid solutions you can return any of them.
+
+--------------------------------------------------------------------------------------
+
+class Solution {
+public:
+    vector<int> getNoZeroIntegers(int n) 
+    {
+        vector<int>res;
+        int x=1;
+        while(res.size()!=2)
+        {
+            int count=0;
+            string sx=to_string(x);
+            for(int i=0;i<sx.size();i++)
+            {
+                if(sx[i]=='0')
+                {
+                   
+                    count++;
+                    break;
+                }
+            }
+            if(count>=1)
+            {
+                x++;
+                continue;
+            }
+           int y=n-x;
+           count=0;
+           string s=to_string(y);
+            for(int i=0;i<s.size();i++)
+            {
+                if(s[i]=='0')
+                {
+                   
+                    count++;
+                    break;
+                }
+            }
+            if(count==0)
+            {
+                res.push_back(x);
+                res.push_back(y);
+                return res;
+            }
+            x++;
+        }
+        return res;
+    }
+};
+
+
+ 
