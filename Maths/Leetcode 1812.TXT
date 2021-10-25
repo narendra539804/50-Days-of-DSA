@@ -1,0 +1,25 @@
+1812. Determine Color of a Chessboard Square
+----------------------------------------------------------------------------------------
+You are given coordinates, a string that represents the coordinates of a square of the chessboard. Below is a chessboard for your reference.
+
+----------------------------------------------------------------------------------------
+
+class Solution {
+public:
+    bool squareIsWhite(string coordinates) 
+    {
+        int x=coordinates[0]-'a';
+        x=x+1;
+        stringstream ss;
+        ss<<coordinates[1];
+        int y;
+        ss>>y;
+        int res=x+y;
+        if(res%2==0)
+        {
+            return false;
+        }
+        return true;
+        
+    }
+};
