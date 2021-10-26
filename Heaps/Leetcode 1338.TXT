@@ -1,0 +1,41 @@
+1338. Reduce Array Size to The Half
+----------------------------------------------------------------------------------------
+You are given an integer array arr. You can choose a set of integers and remove all the occurrences of these integers in the array.
+
+Return the minimum size of the set so that at least half of the integers of the array are removed.
+
+----------------------------------------------------------------------------------------
+
+class Solution {
+public:
+    int minSetSize(vector<int>& arr) {
+        int count=arr.size();
+        int sum=count;
+        unordered_map<int,int> mp;
+        for(int i=0;i<arr.size();i++)
+        {
+            mp[arr[i]]++;
+        }
+        priority_queue<pair<int,int>>pq;
+        for(auto x:mp)
+        {
+            int a=x.first;
+            int b=x.second;
+            pq.push({b,a});
+        }
+        int ans=0;
+        while(!pq.empty())
+        {
+            pair<int,int> y=pq.top();
+            pq.pop();
+            ans+=1;
+            int c=y.first;
+            sum=sum-c;
+            if(sum<=(count/2))
+            {
+                return  ans;
+            }
+        }
+        return ans;
+    }
+};
