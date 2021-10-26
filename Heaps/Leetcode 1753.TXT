@@ -1,0 +1,37 @@
+1753. Maximum Score From Removing Stones
+----------------------------------------------------------------------------------------
+You are playing a solitaire game with three piles of stones of sizes a​​​​​​, b,​​​​​​ and c​​​​​​ respectively. Each turn you choose two different non-empty piles, take one stone from each, and add 1 point to your score. The game stops when there are fewer than two non-empty piles (meaning there are no more available moves).
+
+Given three integers a​​​​​, b,​​​​​ and c​​​​​, return the maximum score you can get.
+
+class Solution {
+public:
+    int maximumScore(int a, int b, int c)
+    {
+        int count=0;
+        priority_queue<int>pq;
+        pq.push(a);
+        pq.push(b);
+        pq.push(c);
+        while(pq.size()>=2)
+        {
+            int x=pq.top();
+            pq.pop();
+            int y=pq.top();
+            pq.pop();
+            x=x-1;
+            if(x>0)
+            {
+                pq.push(x);
+            }
+            y=y-1;
+            if(y>0)
+            {
+                pq.push(y);
+            }
+             count++;
+            
+        }
+        return count;
+    }
+};
