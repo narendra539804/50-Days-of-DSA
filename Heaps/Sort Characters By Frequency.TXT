@@ -1,0 +1,36 @@
+451. Sort Characters By Frequency
+------------------------------------------------------------------------------
+Given a string s, sort it in decreasing order based on the frequency of the characters. The frequency of a character is the number of times it appears in the string.
+
+Return the sorted string. If there are multiple answers, return any of them.
+
+class Solution {
+public:
+    static bool mycompare(pair<char,int> a,pair<char,int>b)
+    {
+        return a.second>b.second;
+    }
+    string frequencySort(string s) 
+    {
+        unordered_map<char,int> mp;
+        string n[256];
+        
+        for(int i=0;i<s.size();i++)
+        {
+            mp[s[i]]++;
+            int store=s[i];
+            n[store]+=s[i];
+        }
+        
+        vector<pair<char,int>> res(mp.begin(),mp.end());
+        sort(res.begin(),res.end(),mycompare);
+        string q="";
+        for(int i=0;i<res.size();i++)
+        {
+         int res1=res[i].first;
+          string add=n[res1];
+            q=q+add;
+        }
+        return q;
+    }
+};
