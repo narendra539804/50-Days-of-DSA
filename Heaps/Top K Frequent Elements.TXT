@@ -1,0 +1,35 @@
+347. Top K Frequent Elements
+----------------------------------------------------------------------------------------
+Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
+
+----------------------------------------------------------------------------------------
+
+
+class Solution {
+public:
+   static bool mycompare(pair<int,int> a,pair<int,int>b)
+    {
+        return a.second>b.second;
+    }
+    vector<int> topKFrequent(vector<int>& nums, int k) 
+    {
+        unordered_map<int,int> mp;
+        for(int i=0;i<nums.size();i++)
+        {
+            mp[nums[i]]++;
+        }
+        vector<pair<int,int>> res(mp.begin(),mp.end());
+        sort(res.begin(),res.end(),mycompare);
+        vector<int>arr;
+        int i=0;
+        while(k--)
+        {
+            arr.push_back(res[i].first);
+            i++;
+        }
+        return arr;
+    }
+};
+
+
+ 
