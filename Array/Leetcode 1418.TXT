@@ -1,0 +1,61 @@
+1418. Display Table of Food Orders in a Restaurant
+----------------------------------------------------------------------------------------
+
+Given the array orders, which represents the orders that customers have done in a restaurant. More specifically orders[i]=[customerNamei,tableNumberi,foodItemi] where customerNamei is the name of the customer, tableNumberi is the table customer sit at, and foodItemi is the item customer orders.
+
+Return the restaurant's “display table”. The “display table” is a table whose row entries denote how many of each food item each table ordered. The first column is the table number and the remaining columns correspond to each food item in alphabetical order. The first row should be a header whose first column is “Table”, followed by the names of the food items. Note that the customer names are not part of the table. Additionally, the rows should be sorted in numerically increasing order.
+
+----------------------------------------------------------------------------------------
+
+class Solution {
+public:
+    vector<vector<string>> displayTable(vector<vector<string>>& orders) 
+    {
+        vector<vector<string>>res;
+        map<string,vector<string>>mp;
+        set<string>s;
+        set<int>t;
+        for(int i=0;i<orders.size();i++)
+        {
+            string x=orders[i][1];
+            string y=orders[i][2];
+            mp[y].push_back(x);
+            s.insert(y);
+            stringstream ss;
+            ss<<x;
+            int r;
+            ss>>r;
+            t.insert(r);
+        }
+        vector<string>table;
+        table.push_back("Table");
+        for(auto x:s)
+        {
+          table.push_back(x);
+         }
+         res.push_back(table);
+        for(auto x:t)
+        {
+            string num=to_string(x);
+            vector<string>e;
+            e.push_back(num);
+            for(auto x:mp)
+            {
+                int count=0;
+                string naren=x.first;
+                vector<string> p(x.second);
+                for(auto y:p)
+                {
+                    if(y==num)
+                    {
+                        count++;
+                    }
+                }
+                string potti=to_string(count);
+                e.push_back(potti);
+            }
+        res.push_back(e);
+        }
+        return res;
+    }
+};
