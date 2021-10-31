@@ -1,0 +1,74 @@
+993. Cousins in Binary Tree
+--------------------------------------------------------------------------------------
+Given the root of a binary tree with unique values and the values of two different nodes of the tree x and y, return true if the nodes corresponding to the values x and y in the tree are cousins, or false otherwise.
+
+Two nodes of a binary tree are cousins if they have the same depth with different parents.
+
+Note that in a binary tree, the root node is at the depth 0, and children of each depth k node are at the depth k + 1.
+
+--------------------------------------------------------------------------------------
+
+class Solution {
+public:
+    bool isCousins(TreeNode* root, int x, int y) 
+    {
+        queue<TreeNode *>q;
+        if(root==NULL)
+        {
+            return false;
+        }
+        q.push(root);
+        while(!q.empty())
+        {
+            int n=q.size();
+             queue<TreeNode*>q1=q;
+            int count1=0,count2=0;
+            while(!q1.empty())
+            {
+                TreeNode* t=q1.front();
+                
+                if(t->val==x)
+                {
+                    count1++;
+                }
+                if(t->val==y)
+                {
+                    count2++;
+                }
+                q1.pop();
+            }
+            if(count1>=1 and count2>=1)
+            {
+                // cout<<count1<<"   "<<count2<<endl;
+                return true;
+            }
+            for(int i=0;i<n;i++)
+            {
+                TreeNode*t=q.front();
+                q.pop();
+                int a=INT_MIN,b=INT_MIN;
+                if(t->left!=NULL)
+                {
+                    q.push(t->left);
+                    a=t->left->val;
+                }
+                if(t->right!=NULL)
+                {
+                    q.push(t->right);
+                    b=t->right->val;
+                }
+                if(x==a and y==b)
+                {
+                    return false;
+                }
+                if(x==b and y==a)
+                {
+                    return false;
+                }
+            }
+           
+        }
+        return false;
+    }
+};
+
