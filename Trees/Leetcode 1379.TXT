@@ -1,0 +1,33 @@
+1379. Find a Corresponding Node of a Binary Tree in a Clone of That Tree
+----------------------------------------------------------------------------------------
+Given two binary trees original and cloned and given a reference to a node target in the original tree.
+
+The cloned tree is a copy of the original tree.
+
+Return a reference to the same node in the cloned tree.
+
+Note that you are not allowed to change any of the two trees or the target node and the answer must be a reference to a node in the cloned tree.
+
+========================================================================================
+
+class Solution {
+public:
+    TreeNode *res=NULL;
+    void inorder(TreeNode* cloned, TreeNode* target)
+    {
+        if(cloned==NULL)
+        {
+            return ;
+        }
+        inorder(cloned->left,target);
+        if(cloned->val==target->val)
+        {
+            res=cloned;
+        }
+        inorder(cloned->right,target);
+    }
+    TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
+        inorder(cloned,target);
+        return res;
+    }
+};
