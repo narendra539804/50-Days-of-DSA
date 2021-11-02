@@ -1,0 +1,25 @@
+Problem Statement
+
+You have been given an array/list 'ARR' of integers. Your task is to find the second largest element present in the 'ARR'.
+
+int findSecondLargest(int n, vector<int> &arr)
+{
+    int la1=INT_MIN,la2=INT_MIN;
+    for(int i=0;i<arr.size();i++)
+    {
+        if(arr[i]>la1)
+        {
+            la2=la1;
+            la1=arr[i];
+        }
+        if(arr[i]>la2 and arr[i]!=la1)
+        {
+            la2=arr[i];
+        }
+    }
+    if(la2==INT_MIN)
+    {
+        return -1;
+    }
+    return la2;
+}
