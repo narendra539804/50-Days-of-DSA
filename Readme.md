@@ -1,1 +1,1 @@
-Consistency is main goal
+Consistency is the main goal
