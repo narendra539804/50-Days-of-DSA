@@ -1,4 +1,4 @@
-Consistency is the main goal
+<h2>Consistency is the main goal</h2>
 
 <h3>Plan:</h3>
 <li>1.Start with any Lang. (C++,Python)</li>
