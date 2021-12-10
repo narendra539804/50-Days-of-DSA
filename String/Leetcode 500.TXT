@@ -1,0 +1,70 @@
+500. Keyboard Row
+======================================================================================
+Given an array of strings words, return the words that can be typed using letters of the alphabet on only one row of American keyboard like the image below.
+
+In the American keyboard:
+
+the first row consists of the characters "qwertyuiop",
+the second row consists of the characters "asdfghjkl", and
+the third row consists of the characters "zxcvbnm".
+
+======================================================================================
+
+class Solution {
+public:
+    vector<string> findWords(vector<string>& words) 
+    {
+        vector<string>res;
+        unordered_map<char,bool>mp1;
+        unordered_map<char,bool>mp2;
+        unordered_map<char,bool>mp3;
+        mp1['Q']=true;mp1['W']=true;mp1['E']=true;mp1['R']=true;mp1['T']=true;mp1['Y']=true;
+        mp1['q']=true;mp1['w']=true;mp1['e']=true;mp1['r']=true;mp1['t']=true;mp1['y']=true;
+        mp1['U']=true;mp1['u']=true;mp1['I']=true;mp1['i']=true;mp1['O']=true;mp1['o']=true;
+        mp1['P']=true;mp1['p']=true;
+        
+                                  mp2['A']=true;mp2['S']=true;mp2['D']=true;mp2['F']=true;mp2['G']=true;mp2['H']=true;
+        mp2['J']=true;
+        mp2['a']=true;mp2['s']=true;mp2['d']=true;mp2['f']=true;mp2['g']=true;mp2['h']=true;
+        mp2['j']=true;mp2['K']=true;mp2['k']=true;mp2['L']=true;mp2['l']=true;
+        
+        mp3['Z']=true;mp3['X']=true;mp3['C']=true;mp3['V']=true;mp3['B']=true;mp3['N']=true;mp3['M']=true;
+        mp3['z']=true;mp3['x']=true;mp3['c']=true;mp3['v']=true;mp3['b']=true;mp3['n']=true;mp3['m']=true;
+       for(int i=0;i<words.size();i++)
+       {
+           string r=words[i];
+           int x=0,y=0,z=0;
+           for(int i=0;i<r.size();i++)
+           {
+               if(mp1.find(r[i])!=mp1.end())
+               {
+                   x++;
+                   continue;
+               }
+               if(mp2.find(r[i])!=mp2.end())
+               {
+                   y++;
+                   continue;
+               }
+               if(mp3.find(r[i])!=mp3.end())
+               {
+                   z++;
+                   continue;
+               }
+           }
+           if(y==0 and z==0 and x>0)
+           {
+               res.push_back(r);
+           }
+           else if(x==0 and y==0 and z>0)
+           {
+                res.push_back(r);
+           }
+            else if(x==0 and z==0 and y>0)
+           {
+                res.push_back(r);
+           }
+       }
+        return res;
+    }
+};
