@@ -9,6 +9,6 @@
 <li>6.And now go to Medium Level Questions </li>
 <li>7.Be good at Linear DS and Then you go to Trees and Graphs and DP</li>
 <li>8.And Now start Doing Interview Problems</li>
-<li>9.participate in Leetcode Contests and CodeChef Contests </li>
+<li>9.Participate in Leetcode Contests and CodeChef Contests </li>
 
 
