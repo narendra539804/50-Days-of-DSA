@@ -10,5 +10,6 @@
 <li>7.Be good at Linear DS and Then you go to Trees and Graphs and DP</li>
 <li>8.And Now start Doing Interview Problems</li>
 <li>9.Participate in Leetcode Contests and CodeChef Contests </li>
+<li>Finally Practise As many questions as you can</li>
 
 
