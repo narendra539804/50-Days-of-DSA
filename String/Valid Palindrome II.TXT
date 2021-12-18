@@ -1,0 +1,45 @@
+Given a string s, return true if the s can be palindrome after deleting at most one character from it.
+
+code:
+
+class Solution {
+public:
+    
+    bool check(string s,int st,int e)
+    {
+        while(st<=e)
+        {
+            if(s[st]!=s[e])
+            {
+                return false;
+            }
+            st++;
+            e--;
+        }
+        return true;
+    }
+    
+    bool validPalindrome(string s) {
+        int st=0;
+        int e=s.size()-1;
+        while(st<=e)
+        {
+            if(s[st]!=s[e])
+            {
+                if(check(s,st+1,e) or check(s,st,e-1))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else{
+                st++;
+                e--;
+            }
+        }
+        return true;
+    }
+};
