@@ -1,0 +1,57 @@
+You are given a string s and an integer k, a k duplicate removal consists of choosing k adjacent and equal letters from s and removing them, causing the left and the right side of the deleted substring to concatenate together.
+
+We repeatedly make k duplicate removals on s until we no longer can.
+
+Return the final string after all such duplicate removals have been made. It is guaranteed that the answer is unique.
+
+
+class spair{
+  public:
+    char c;
+    int  count;
+};
+class Solution {
+public:
+    string removeDuplicates(string s, int k) {
+        stack<spair*>st;
+        for(int i=0;i<s.size();i++)
+        {
+            spair *obj=new spair();
+            if(st.size()==0)
+            {
+                obj->c=s[i];
+                obj->count=1;
+                st.push(obj);
+                continue;
+            }
+            char top=st.top()->c;
+            if(top!=s[i])
+            {
+                obj->c=s[i];
+                obj->count=1;
+                st.push(obj);
+                continue;
+            }
+              int pc=st.top()->count;
+              obj->c=s[i];
+              obj->count=pc+1;
+              st.push(obj);
+              if(obj->count==k)
+              {
+                  int pre=k;
+                      while(pre--)
+                      {
+                          st.pop();
+                      }
+              }
+        }
+        string res="";
+        while(!st.empty())
+        {
+            res.push_back(st.top()->c);
+            st.pop();
+        }
+        reverse(res.begin(),res.end());
+        return res;
+    }
+};
