@@ -27,7 +27,6 @@ public:
                     res+=' ';
                 }
                 else{
-                    cout<<word<<"  ";
                     char c=word[0];
                     word.erase(0,1);
                     cout<<word<<"  ";
@@ -59,7 +58,6 @@ public:
                     res+=word;
                 }
                 else{
-                    cout<<word<<"  ";
                     char c=word[0];
                     word.erase(0,1);
                     cout<<word<<"  ";
