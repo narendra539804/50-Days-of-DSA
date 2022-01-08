@@ -13,4 +13,5 @@
 <li>Finally Practise As many questions as you can</li>
 
 <h2>Update : From now the Questions are directly added </h2>
+<hr/>
 
