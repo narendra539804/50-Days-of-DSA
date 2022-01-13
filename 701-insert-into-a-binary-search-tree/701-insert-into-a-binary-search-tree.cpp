@@ -32,7 +32,6 @@ public:
                 r=r->left;
             }
         }
-        cout<<t->val<<"  ";
         if(t->val>val)
         {
             t->left=i;
