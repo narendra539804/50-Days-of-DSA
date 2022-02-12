@@ -2,41 +2,49 @@ class Solution {
 public:
     int ladderLength(string beginWord, string endWord, vector<string>& wordList)
     {
-        if(find(wordList.begin(),wordList.end(),endWord)==wordList.end())
+        set<string>s;
+        for(int i=0;i<wordList.size();i++){
+            s.insert(wordList[i]);
+        }
+        if(s.find(endWord)==s.end())
+        {
             return 0;
-        set<string> s;
-        for(auto i:wordList)
-            s.insert(i);
-        queue<string> q;
+        }
+        int ans=0;
+        queue<string>q;
         q.push(beginWord);
-        int d=0;
         while(!q.empty())
         {
-            d++;
-            int n=q.size();
-            while(n--)
+            ans++;
+            int qsize=q.size();
+            while(qsize--)
             {
-                string curr=q.front();
-                q.pop();
-                for(int i=0;i<curr.length();i++)
+            string res=q.front();
+            cout<<res<<" ";
+            string store=res;
+            q.pop();
+            for(int i=0;i<res.size();i++)
+            {
+                res=store;
+                for(int j=0;j<26;j++)
                 {
-                    string tmp=curr;
-                    for(char c='a';c<='z';c++)
+                    res[i]=j+'a';
+                    
+                    if(s.find(res)!=s.end())
                     {
-                        tmp[i]=c;
-                        if(tmp==curr)
-                            continue;
-                        if(tmp==endWord)
-                            return d+1;
-                        if(s.find(tmp)!=s.end())
+                        //cout<<res<<"  ";
+                        q.push(res);
+                        s.erase(res);
+                        if(res==endWord)
                         {
-                            q.push(tmp);
-                            s.erase(tmp);
+                            return ans+1;
                         }
                     }
                 }
             }
+            }
         }
         return 0;
+        
     }
 };
