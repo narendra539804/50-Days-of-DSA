@@ -25,10 +25,7 @@ public:
             return true;
         }
         nums.pop_back();
-        return false;
-        
-       
-        
+        return false;   
     }
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) 
     {
@@ -36,15 +33,6 @@ public:
         if(pre(root,nums1,p)==false or pre(root,nums2,q)==false)
         {
              return NULL;
-        }
-        for(auto x:nums1)
-        {
-            cout<<x->val<<"  ";
-        }
-        cout<<endl;
-        for(auto y:nums2)
-        {
-            cout<<y->val<<"  ";
         }
         TreeNode *res=NULL;
         for(int i=0;i<nums1.size() and i<nums2.size();i++)
